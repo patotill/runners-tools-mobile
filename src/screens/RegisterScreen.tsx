@@ -39,7 +39,7 @@ const RegisterScreen: React.FC<Props> = ({ navigation }) => {
     };
 
     LISTA_USUARIOS.push(nuevoUsuario);
-    console.log('Usuario registrado con éxito:', nuevoUsuario);
+    alert('Usuario registrado con éxito.');
     console.log('Lista actual:', LISTA_USUARIOS);
 
     navigation.navigate('Login');

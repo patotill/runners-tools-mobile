@@ -2,9 +2,10 @@ import React from 'react';
 import { View, Text, Button } from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../types';
-import { useAuth } from '../context/AuthContext'; // 1. Importas el hook del contexto
+import { useAuth } from '../context/AuthContext'; //auth p el contexto
 import { globalStyles } from '../styles/global';
 import { colors } from '../styles/colors';
+import Layout from '../components/Layout'; // layout p la imagen de fondo
 
 type InicioScreenNavProp = NativeStackNavigationProp<RootStackParamList, 'Inicio'>;
 
@@ -16,12 +17,13 @@ const InicioScreen: React.FC<Props> = ({ navigation }) => {
   const { usuarioLogueado } = useAuth(); // 2. Obtienes el estado de la sesión global
 
   return (
-    <View style={globalStyles.container}>
-      <Text style={globalStyles.title}>Runner's Tools 🏃‍♂️</Text>
-      
-      <Text style={globalStyles.text}>
-        Calcula ritmos de carrera y predice tus tiempos finales para media maratón, maratón o cualquier distancia objetivo.
-      </Text>
+    <Layout>
+      <View style={globalStyles.container}>
+        <Text style={globalStyles.title}>Runner's Tools 🏃‍♂️</Text>
+        
+        <Text style={globalStyles.text}>
+          Calcula ritmos de carrera y predice tus tiempos finales para media maratón, maratón o cualquier distancia objetivo.
+        </Text>
 
       {/* 3. Condicionamos la vista: si hay un usuario logueado, ocultamos los botones de acceso */}
       {usuarioLogueado ? (
@@ -55,7 +57,8 @@ const InicioScreen: React.FC<Props> = ({ navigation }) => {
           </View>
         </View>
       )}
-    </View>
+      </View>
+    </Layout>
   );
 };
 

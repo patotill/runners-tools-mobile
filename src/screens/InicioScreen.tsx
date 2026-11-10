@@ -1,11 +1,12 @@
 import React from 'react';
 import { View, Text, Button } from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { Ionicons } from '@expo/vector-icons';
 import { RootStackParamList } from '../types';
-import { useAuth } from '../context/AuthContext'; //auth p el contexto
+import { useAuth } from '../context/AuthContext';
 import { globalStyles } from '../styles/global';
 import { colors } from '../styles/colors';
-import Layout from '../components/Layout'; // layout p la imagen de fondo
+import Layout from '../components/Layout';
 
 type InicioScreenNavProp = NativeStackNavigationProp<RootStackParamList, 'Inicio'>;
 
@@ -14,7 +15,7 @@ type Props = {
 };
 
 const InicioScreen: React.FC<Props> = ({ navigation }) => {
-  const { usuarioLogueado } = useAuth(); // 2. Obtienes el estado de la sesión global
+  const { usuarioLogueado, cerrarSesion } = useAuth();
 
   return (
     <Layout>
@@ -25,29 +26,39 @@ const InicioScreen: React.FC<Props> = ({ navigation }) => {
           Calcula ritmos de carrera y predice tus tiempos finales para media maratón, maratón o cualquier distancia objetivo.
         </Text>
 
-      {/* 3. Condicionamos la vista: si hay un usuario logueado, ocultamos los botones de acceso */}
+      {/* Condición si hay un usuario logueado */}
       {usuarioLogueado ? (
         <View style={{ marginTop: 20, alignItems: 'center', width: '100%' }}>
-          <Text style={{ color: colors.text, fontSize: 16, fontWeight: 'bold', marginBottom: 6 }}>
-            Sesión activa:
-          </Text>
-          <Text style={{ color: colors.textSecondary || '#aaa', fontSize: 14, textAlign: 'center' }}>
+          <View style={{ flexDirection: 'row', alignItems: 'center', marginBottom: 6 }}>
+            <Ionicons name="person-outline" size={20} color={colors.primary} style={{ marginRight: 6 }} />
+            <Text style={{ color: colors.text, fontSize: 16, fontWeight: 'bold' }}>
+              Sesión activa:
+            </Text>
+          </View>
+          <Text style={{ color: colors.textSecondary || '#aaa', fontSize: 14, textAlign: 'center', marginBottom: 16 }}>
             {usuarioLogueado.nombre} {usuarioLogueado.apellido} ({usuarioLogueado.email})
           </Text>
+
+          {/* Botón de Cerrar Sesión en la pantalla de inicio */}
+          <View style={{ width: '100%' }}>
+            <Button 
+              title="Cerrar Sesión" 
+              color={colors.primary} 
+              onPress={() => cerrarSesion()} 
+            />
+          </View>
         </View>
       ) : (
-        /* Si NO hay sesión, mostramos los botones normalmente */
+        /* Si no hay sesión, muestra los botones de login y registro */
         <View style={{ width: '100%', marginTop: 10 }}>
-          {/* Botón de Iniciar Sesión */}
           <View style={{ marginBottom: 12, width: '100%' }}>
             <Button 
-              title="Iniciar Sesión" 
+              title="Ingresar a tu cuenta" 
               color={colors.primary}
               onPress={() => navigation.navigate('Login')} 
             />
           </View>
 
-          {/* Botón de Registrarse */}
           <View style={{ width: '100%' }}>
             <Button 
               title="Registrarse" 

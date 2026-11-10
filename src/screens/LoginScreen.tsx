@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 import { BottomTabScreenProps } from '@react-navigation/bottom-tabs';
+import { Ionicons } from '@expo/vector-icons';
 import { RootStackParamList } from '../types';
 import { LISTA_USUARIOS } from '../types/usuarios';
 import { useAuth } from '../context/AuthContext';
 import { colors } from '../styles/colors';
 import { globalStyles } from '../styles/global';
-import Layout from '../components/Layout'; // 1. Importas el componente Layout
+import Layout from '../components/Layout';
 
 type Props = BottomTabScreenProps<RootStackParamList, 'Login'>;
 
@@ -40,10 +41,12 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
   };
 
   return (
-    /* 2. Envolvemos el contenido con Layout y hacemos transparente el contenedor global */
     <Layout>
       <View style={[globalStyles.container, styles.container, { backgroundColor: 'transparent' }]}>
-        <Text style={globalStyles.title}>Iniciar Sesión</Text>
+        <View style={styles.titleContainer}>
+          <Ionicons name="log-in-outline" size={24} color={colors.text} style={styles.iconStyle} />
+          <Text style={globalStyles.title}>Ingresar a tu cuenta</Text>
+        </View>
 
         <TextInput
           style={styles.input}
@@ -71,6 +74,16 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   container: { padding: 20, justifyContent: 'center', width: '100%' },
+  titleContainer: { 
+    flexDirection: 'row', 
+    alignItems: 'center', 
+    justifyContent: 'center', 
+    marginBottom: 16,
+    flexWrap: 'wrap'
+  },
+  iconStyle: { 
+    marginRight: 8 
+  },
   input: {
     width: '100%',
     backgroundColor: colors.card,

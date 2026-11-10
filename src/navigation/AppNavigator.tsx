@@ -71,7 +71,7 @@ const AppNavigator: React.FC = () => {
         <Tab.Screen
           name="UserDetail"
           component={UsuarioDetailScreen}
-          options={{ tabBarLabel: 'Perfil' }}
+          options={{ tabBarLabel: 'Mi cuenta' }}
         />
         
       </Tab.Navigator>

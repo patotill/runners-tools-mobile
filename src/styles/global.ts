@@ -10,14 +10,14 @@ export const globalStyles = StyleSheet.create({
     alignItems: 'center',
   },
   title: {
-    fontSize: 26,
+    fontSize: 24,
     fontWeight: 'bold',
     color: colors.text,
     marginBottom: 16,
     textAlign: 'center',
   },
   text: {
-    fontSize: 16,
+    fontSize: 17,
     color: colors.textSecondary,
     textAlign: 'center',
     marginBottom: 12,

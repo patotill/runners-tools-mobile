@@ -214,7 +214,7 @@ const UserDetailScreen: React.FC<Props> = ({ navigation }) => {
             <View style={{ flex: 1 }}>
               <Text style={styles.carreraTitle}>{item.nombre}</Text>
               <Text style={styles.carreraText}>📍 Lugar: {item.lugar}</Text>
-              <Text style={styles.carreraText}>🛣️ Distancia: {item.distancia}</Text>
+              <Text style={styles.carreraText}>👣 Distancia: {item.distancia}</Text>
               <Text style={styles.carreraText}>⏱️ Tiempo total: {item.tiempo}</Text>
             </View>
             <TouchableOpacity onPress={() => handleEliminarCarrera(item.id)} style={styles.deleteButton}>

@@ -12,13 +12,18 @@ type Props = NativeStackScreenProps<RootStackParamList, 'Register'>;
 const RegisterScreen: React.FC<Props> = ({ navigation }) => {
   const [nombre, setNombre] = useState('');
   const [apellido, setApellido] = useState('');
-  const [fechaNacimiento, setFechaNacimiento] = useState('');
+  
+  // Estados separados para la fecha de nacimiento
+  const [dia, setDia] = useState('');
+  const [mes, setMes] = useState('');
+  const [anio, setAnio] = useState('');
+
   const [nacionalidad, setNacionalidad] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleRegister = () => {
-    if (!nombre || !apellido || !fechaNacimiento || !nacionalidad || !email || !password) {
+    if (!nombre || !apellido || !dia || !mes || !anio || !nacionalidad || !email || !password) {
       alert('Por favor completa todos los campos.');
       return;
     }
@@ -28,6 +33,9 @@ const RegisterScreen: React.FC<Props> = ({ navigation }) => {
       alert('Ya existe una cuenta registrada con este correo electrónico.');
       return;
     }
+
+    // Unimos los valores en un solo string formateado (DD/MM/AAAA)
+    const fechaNacimiento = `${dia.padStart(2, '0')}/${mes.padStart(2, '0')}/${anio}`;
 
     const nuevoUsuario: Usuario = {
       id: Date.now().toString(),
@@ -65,13 +73,39 @@ const RegisterScreen: React.FC<Props> = ({ navigation }) => {
           value={apellido}
           onChangeText={setApellido}
         />
-        <TextInput
-          style={styles.input}
-          placeholder="Fecha de Nacimiento (ej. DD/MM/AAAA)"
-          placeholderTextColor={colors.textSecondary}
-          value={fechaNacimiento}
-          onChangeText={setFechaNacimiento}
-        />
+
+        {/* Fila separada para Fecha de Nacimiento (Día / Mes / Año) */}
+        <Text style={styles.label}>Fecha de Nacimiento</Text>
+        <View style={styles.dateRow}>
+          <TextInput
+            style={[styles.input, styles.dateInput]}
+            placeholder="Día (DD)"
+            placeholderTextColor={colors.textSecondary}
+            keyboardType="numeric"
+            maxLength={2}
+            value={dia}
+            onChangeText={setDia}
+          />
+          <TextInput
+            style={[styles.input, styles.dateInput]}
+            placeholder="Mes (MM)"
+            placeholderTextColor={colors.textSecondary}
+            keyboardType="numeric"
+            maxLength={2}
+            value={mes}
+            onChangeText={setMes}
+          />
+          <TextInput
+            style={[styles.input, styles.dateInputYear]}
+            placeholder="Año (AAAA)"
+            placeholderTextColor={colors.textSecondary}
+            keyboardType="numeric"
+            maxLength={4}
+            value={anio}
+            onChangeText={setAnio}
+          />
+        </View>
+
         <TextInput
           style={styles.input}
           placeholder="Nacionalidad (ej. Argentina)"
@@ -113,6 +147,7 @@ const RegisterScreen: React.FC<Props> = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   container: { padding: 20, justifyContent: 'center', width: '100%' },
+  label: { color: colors.text, marginBottom: 6, fontSize: 13, alignSelf: 'flex-start' },
   input: {
     width: '100%',
     backgroundColor: colors.card,
@@ -122,6 +157,21 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     padding: 12,
     marginBottom: 16,
+  },
+  dateRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '100%',
+    marginBottom: 4,
+  },
+  dateInput: {
+    flex: 1,
+    marginRight: 8,
+    textAlign: 'center',
+  },
+  dateInputYear: {
+    flex: 1.5,
+    textAlign: 'center',
   },
   buttonSpacing: {
     marginTop: 12,

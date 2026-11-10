@@ -19,8 +19,8 @@ const CalculadoraScreen: React.FC<Props> = () => {
 
   // Estados predictor
   const [horasPred, setHorasPred] = useState('');
-  const [minutosPred, setMinutosPred] = useState('51');
-  const [segundosPred, setSegundosPred] = useState('10');
+  const [minutosPred, setMinutosPred] = useState('');
+  const [segundosPred, setSegundosPred] = useState('');
   const [resultadoMedia, setResultadoMedia] = useState<string | null>(null);
   const [resultadoMaraton, setResultadoMaraton] = useState<string | null>(null);
 
@@ -187,10 +187,10 @@ const CalculadoraScreen: React.FC<Props> = () => {
             {resultadoMedia && resultadoMaraton && (
               <View style={styles.resultBox}>
                 <Text style={styles.resultText}>Tiempo estimado 21K: {resultadoMedia}</Text>
-                <Text style={styles.subResultText}>Proyección basada en tu ritmo de 10K</Text>
+                <Text style={styles.subResultText}>WR - Jomif Kejelcha - 00:56:51 (Bs.As. 23.08.2026)</Text>
 
                 <Text style={[styles.resultText, { marginTop: 10 }]}>Tiempo estimado 42K: {resultadoMaraton}</Text>
-                <Text style={styles.subResultText}>Proyección para distancia completa</Text>
+                <Text style={styles.subResultText}>WR - Sabastian Sawe - 01:59:30 (Londres 26.04.2026)</Text>
               </View>
             )}
           </View>

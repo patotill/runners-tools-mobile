@@ -5,19 +5,20 @@ import { RootStackParamList } from '../types';
 import { LISTA_USUARIOS, Usuario } from '../types/usuarios';
 import { colors } from '../styles/colors';
 import { globalStyles } from '../styles/global';
-import Layout from '../components/Layout'; // 1. Importas el componente Layout
+import Layout from '../components/Layout';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Register'>;
 
 const RegisterScreen: React.FC<Props> = ({ navigation }) => {
   const [nombre, setNombre] = useState('');
   const [apellido, setApellido] = useState('');
-  const [dni, setDni] = useState('');
+  const [fechaNacimiento, setFechaNacimiento] = useState('');
+  const [nacionalidad, setNacionalidad] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleRegister = () => {
-    if (!nombre || !apellido || !dni || !email || !password) {
+    if (!nombre || !apellido || !fechaNacimiento || !nacionalidad || !email || !password) {
       alert('Por favor completa todos los campos.');
       return;
     }
@@ -32,7 +33,8 @@ const RegisterScreen: React.FC<Props> = ({ navigation }) => {
       id: Date.now().toString(),
       nombre,
       apellido,
-      dni,
+      fechaNacimiento,
+      nacionalidad,
       email,
       password,
       carreras: [],
@@ -40,13 +42,11 @@ const RegisterScreen: React.FC<Props> = ({ navigation }) => {
 
     LISTA_USUARIOS.push(nuevoUsuario);
     alert('Usuario registrado con éxito.');
-    console.log('Lista actual:', LISTA_USUARIOS);
 
     navigation.navigate('Login');
   };
 
   return (
-    /* 2. Envolvemos el contenido con Layout y usamos backgroundColor transparente */
     <Layout>
       <View style={[globalStyles.container, styles.container, { backgroundColor: 'transparent' }]}>
         <Text style={globalStyles.title}>Crear Cuenta</Text>
@@ -67,11 +67,17 @@ const RegisterScreen: React.FC<Props> = ({ navigation }) => {
         />
         <TextInput
           style={styles.input}
-          placeholder="DNI"
+          placeholder="Fecha de Nacimiento (ej. DD/MM/AAAA)"
           placeholderTextColor={colors.textSecondary}
-          keyboardType="numeric"
-          value={dni}
-          onChangeText={setDni}
+          value={fechaNacimiento}
+          onChangeText={setFechaNacimiento}
+        />
+        <TextInput
+          style={styles.input}
+          placeholder="Nacionalidad (ej. Argentina)"
+          placeholderTextColor={colors.textSecondary}
+          value={nacionalidad}
+          onChangeText={setNacionalidad}
         />
         <TextInput
           style={styles.input}
@@ -92,6 +98,14 @@ const RegisterScreen: React.FC<Props> = ({ navigation }) => {
         />
 
         <Button title="Registrarse" color={colors.primary} onPress={handleRegister} />
+
+        <View style={styles.buttonSpacing}>
+          <Button 
+            title="Volver al inicio" 
+            color={colors.textSecondary || '#6c757d'} 
+            onPress={() => navigation.goBack()} 
+          />
+        </View>
       </View>
     </Layout>
   );
@@ -108,6 +122,9 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     padding: 12,
     marginBottom: 16,
+  },
+  buttonSpacing: {
+    marginTop: 12,
   },
 });
 

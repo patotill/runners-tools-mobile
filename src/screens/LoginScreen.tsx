@@ -67,6 +67,15 @@ const LoginScreen: React.FC<Props> = ({ navigation }) => {
         />
 
         <Button title="Ingresar" color={colors.primary} onPress={handleLogin} />
+
+        {/* Botón volver al inicio */}
+        <View style={styles.buttonSpacing}>
+          <Button 
+            title="Volver al inicio" 
+            color={colors.textSecondary || '#6c757d'} 
+            onPress={() => navigation.goBack()} 
+          />
+        </View>
       </View>
     </Layout>
   );
@@ -93,6 +102,9 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     padding: 12,
     marginBottom: 16,
+  },
+  buttonSpacing: {
+    marginTop: 12,
   },
 });
 

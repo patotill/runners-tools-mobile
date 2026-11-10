@@ -1,21 +1,21 @@
-// Tipado para una carrera individual
 export type Carrera = {
   id: string;
-  distancia: number; // en km
-  tiempoTotal: number; // en minutos
-  ritmo: string; // ej: "5:00 min/km"
+  distancia: string;
+  tiempo: string;
+  nombre: string;
+  lugar: string;
+  imagenUri?: string | null;
 };
 
-// Tipado para el usuario dinámico
 export type Usuario = {
   id: string;
   email: string;
   password: string;
   nombre: string;
   apellido: string;
-  dni: string;
+  fechaNacimiento: string;
+  nacionalidad: string;
   carreras: Carrera[];
 };
 
-// Array de usuarios vacio
 export const LISTA_USUARIOS: Usuario[] = [];

@@ -79,7 +79,7 @@ Expo Vector Icons (@expo/vector-icons)
 Clonar el repositorio:
 
 Bash
-git clone [https://github.com/tu-usuario/runners-tools-mobile.git](https://github.com/tu-usuario/runners-tools-mobile.git)
+git clone [https://github.com/patotill/runners-tools-mobile.git](https://github.com/patotill/runners-tools-mobile.git)
 cd runners-tools-mobile
 Instalar dependencias:
 

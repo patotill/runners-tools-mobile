@@ -63,3 +63,30 @@ runners-tools-mobile/
 ├── LICENSE
 ├── package-lock.json
 └── package.json
+
+🛠️ Tecnologías Utilizadas
+React Native & Expo SDK
+
+TypeScript (Tipado estático)
+
+React Navigation (@react-navigation/native, @react-navigation/bottom-tabs, @react-navigation/native-stack)
+
+Expo Image Picker (expo-image-picker)
+
+Expo Vector Icons (@expo/vector-icons)
+
+💻 Instalación y Configuración Local
+Clonar el repositorio:
+
+Bash
+git clone [https://github.com/tu-usuario/runners-tools-mobile.git](https://github.com/tu-usuario/runners-tools-mobile.git)
+cd runners-tools-mobile
+Instalar dependencias:
+
+Bash
+npm install
+Iniciar el servidor de desarrollo de Expo:
+
+Bash
+npx expo start
+Escanea el código QR desde la aplicación Expo Go en tu dispositivo móvil (Android/iOS) o presiona a para emulador Android / i para simulador iOS.
